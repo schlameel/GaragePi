@@ -1,0 +1,12 @@
+[Unit]
+Description=GaragePi Backend Service
+After=multi-user.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/garagepi.pid
+ExecStart=/home/pi/garagepi/venv/bin/python /home/pi/garagepi/start_backend_daemon.py
+WorkingDirectory=/home/pi/garagepi
+
+[Install]
+WantedBy=multi-user.target
