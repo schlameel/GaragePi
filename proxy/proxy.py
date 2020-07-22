@@ -111,7 +111,7 @@ class GaragePiProxy(object):
         socket.setsockopt(zmq.SUBSCRIBE, b"")
         socket.connect('tcp://{0}:{1}'.format(host, port))
 
-        NON_READ_THREASHOLD = 10
+        NON_READ_THRESHOLD = 600
         nonReadCount = 0
         self.__monitoring = True
         while self.__monitoring:
@@ -121,7 +121,7 @@ class GaragePiProxy(object):
                 nonReadCount = 0
             except zmq.error.Again:
                 nonReadCount += 1
-                if nonReadCount % NON_READ_THREASHOLD == 0:
+                if nonReadCount % NON_READ_THRESHOLD == 0:
                     self.__logger.warning("Monitor - no messages for {0} seconds".format(nonReadCount))
                 time.sleep(1000)
 
